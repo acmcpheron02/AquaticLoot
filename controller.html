@@ -15,19 +15,27 @@
 <body class="h-100">
   <div id="playerInfo" class="container-fluid">
     <div class="row">
-      <div id="playerAvatar" class="col-4 borderShow">
-        <img src="aquaticdiver-test.svg" 
+      <div id="playerAvatar" class="col-4 p-0 borderShow">
+        <img id="playerAvatarSVG" src="aquaticdiver-test.svg" 
           alt="player diver avatar"
-          height="180px">
+          height="185"
+          width="118">
       </div>
-      <div id="playerName" class="col-8 borderShow">
-        <h1>Johnny</h1>
-      </div>
-      <div id="playerActivity" class="col-8 borderShow">
-        <h2>Diver</h2>
-      </div>
-      <div id="playerGold" class="col-8 borderShow">
-        <h2>Gold: 20</h2>
+      <div class="col">
+        <div class="row">
+          <div id="playerName" class="col-12">
+            <h1>Johnny</h1>
+          </div>
+          <div id="playerActivity" class="col-12">
+            <h2>Diver</h2>
+          </div>
+          <div id="playerGoldRound" class="col-12 borderShow">
+            <h2>Loot: 20</h2>
+          </div>
+          <div id="playerGoldRound" class="col-12 borderShow">
+            <h2>Stashed: 80</h2>
+          </div>
+        </div>
       </div>
     </div>
 
