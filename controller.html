@@ -4,18 +4,43 @@
   Here you can display all the buttons etc to control your game.
  -->
 <!DOCTYPE HTML>
-<html>
+<html class="h-100">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Super advanced controller</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="styles/shared.css">
-  <link rel="stylesheet" type="text/css" href="styles/controller.css">
+  <link rel="stylesheet" type="text/css" href="css/shared.css">
+  <link rel="stylesheet" type="text/css" href="css/controller.css">
 </head>
-<body>
+<body class="h-100">
+  <div id="playerInfo" class="container-fluid">
+    <div class="row">
+      <div id="playerAvatar" class="col-4 borderShow">
+        <img src="aquaticdiver-test.svg" 
+          alt="player diver avatar"
+          height="180px">
+      </div>
+      <div id="playerName" class="col-8 borderShow">
+        <h1>Johnny</h1>
+      </div>
+      <div id="playerActivity" class="col-8 borderShow">
+        <h2>Diver</h2>
+      </div>
+      <div id="playerGold" class="col-8 borderShow">
+        <h2>Gold: 20</h2>
+      </div>
+    </div>
 
+    <div id="buttonReturn" class="col borderShow">
+      <h1>Surface</h1>
+    </div>
 
-  <div class=".hidden-xs-up" id="message_log"></div>
+    <div id="buttonDeeper" class="col borderShow">
+      <h1>Go Deeper!</h1>
+    </div>
+  </div>
+
+  <div class="hidden-xs-up" id="message_log"></div>
 
   <!-- Include the AirConsole API -->
   <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
