@@ -1,55 +1,28 @@
-/**
-  This file will be included by the screen.html
-*/
-var air_console = null;
+// This is going to hold most of our actual logic and do all the work.
+window.onload = function () {
+    // Init AirConsole instance.
+    AC = new AirConsole();
 
-var init = function() {
+    AC.onReady = function () {
+        log("Let's get this party started, fam.");
+    };
 
-  var message_log_ele = document.getElementById('message_log');
-  var cube_ele = document.getElementById('cube');
+    // Gets called when a device connects
+    AC.onConnect = function (device_id) {
+        log("HERE COMES A NEW CHALLENGER: ID {}".format(device_id));
+    };
 
-  var moveCube = function() {
-    var min = 100;
-    var max = window.innerWidth - 100;
-    var rand_pos = Math.floor(Math.random() * (max - min + 1)) + min;
-    cube_ele.style.left = rand_pos + "px";
-    return rand_pos;
-  };
+    // Gets called when a device disconnects
+    AC.onDisconnect = function (device_id) {
+        log("This dude just pussied out: ID {}".format(device_id));
+    };
 
-  // Init AirConsole instance
-  air_console = new AirConsole();
-
-  air_console.onReady = function() {
-    appendTextToElement(message_log_ele, "OnReady - You are the Screen!");
-  };
-
-  // Gets called when a device connects
-  air_console.onConnect = function(device_id) {
-    appendTextToElement(message_log_ele, "Connected device id: " + device_id);
-  };
-
-  // Gets called when a device disconnects
-  air_console.onDisconnect = function(device_id) {
-    appendTextToElement(message_log_ele, "Disconnect device id: " + device_id);
-  };
-
-  // Receive a message from a device
-  air_console.onMessage = function(device_id, data) {
-    // Receive "greet" message
-    if (data.action === AC.Action.SayHello) { // see js/shared.js
-      appendTextToElement(message_log_ele, "Hello from device " + device_id);
-      // Lets send something back
-      this.message(device_id, { message: "Oh hello back! Your Screen" });
-    }
-
-    // Receive "move cube" action
-    if (data.action === AC.Action.MoveCube) {
-      var px = moveCube();
-      var msg = "Device " + device_id + " moves the cube to: " + px + "px";
-      appendTextToElement(message_log_ele, msg);
-    }
-
-  };
+    // Receive a message from a device
+    AC.onMessage = function (device_id, data) {
+        // Receive "greet" message
+        if (data.type === "CWhatsGood") {
+            log("What's good, ID {}?".format(device_id));
+            AC.message(device_id, {type: "SWhatsGood"});
+        }
+    };
 };
-
-window.onload = init;

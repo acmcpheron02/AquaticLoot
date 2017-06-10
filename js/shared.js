@@ -1,23 +1,36 @@
-/**
-  This file will be included by both, the screen.html and the controller.html
-  (Because we are lazy and do not want to write code twice ;)
-*/
+// Common file for both.
+Sugar.extend();
 
-/*
- * We use "constants" so that message exchange does not become a mess
- */
-var AC =  {};
+var AC = null;
 
-AC.Action = {
-  SayHello: "greet"
-};
+// Controller messages.
+var CMsg = {
+    WhatsGood: "CWhatsGood";
+    SubmitName: "CSubmitName";
+    Proceed: "CProceed";
+    Retreat: "CRetreat";
+}
 
+// Screen messages.
+var SMsg = {
+    WhatsGood: "SWhatsGood";
+    NameAccepted: "SNameAccepted";
+    NameRejected: "SNameRejected";
+}
 
-/**
- * A simple helper function to append text to an element
- */
-var appendTextToElement = function(parent_ele, text) {
-  var ele = document.createElement('DIV');
-  ele.innerHTML = text;
-  parent_ele.appendChild(ele);
-};
+// Dump stuff to console and the debug div if it exists.
+function log (msg) {
+    var el = document.createElement("p");
+    el.innerHTML = msg;
+    console.log(msg);
+    document.getElementById("message_log").appendChild(el);
+}
+
+// Both the controller and screen need to know about this class.
+class Player {
+    constructor (name) {
+        this.name = name;
+        this.loot = 0;
+        this.relics = [];
+    }
+}
