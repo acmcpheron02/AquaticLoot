@@ -1,10 +1,8 @@
-<!--
-  AirConsole Scaffold - http://developers.airconsole.com
+<!--AirConsole Scaffold - http://developers.airconsole.com
   The screen.html is loaded by the "big screen" - like your laptop.
-  This is where the main game is "living".
- -->
+  This is where the main game is "living".-->
 <!DOCTYPE HTML>
-<html>
+<html class="h-100">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Aquatic Loot</title>
@@ -13,28 +11,74 @@
   <link rel="stylesheet" type="text/css" href="css/screen.css">
 </head>
 
-<body>
-  <div id="gameHeader" class="container w-100" >
+<body class="h-100">
+  <div id="gameHeader" class="container-fluid">
     <div id="gameTitle" class="row align-items-center justify-content-between p-1">
-      <div class="column m-1">
+      <div class="col-1"></div>
+      <div class="col-6 my-2">
         <h1 class="m-0">Aquatic Loot</h1>
       </div>
-      <div class="column">
-        <p class="m-0">Where Atlantis Used To Be</p>
+      <div class="col-4 my-2">
+        <p class="m-0 text-right">Where Atlantis Used To Be</p>
       </div>
+      <div class="col-1"></div>
     </div>
   </div>
-  <div>
-  <div id="playingField" class="container w-100">
+  <!--<div id="columnTest" class="container-fluid">
     <div class="row">
-      <div class="col-4">
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+      <div class="col-1">
+       <p>Test</p>
+      </div>
+    </div>
+  </div>-->
+  <div id="playingField" class="container-fluid h-100 mh-100">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-4 borderShow">
         <p>I just want to fill <br> some space <br> to see if the background color works <br></p>
       </div>
+      <div class="col-6 borderShow">
+        <p>Similar, I want to fill this space. <br> I should really fix this height now.</p>
+      </div>
+      <div class="col-1"></div>
     </div>
   </div>
 
 <!--Append console messages here.-->
-  <div class="container fixed-bottom">
+  <div class="container-fluid fixed-bottom">
     <div class="row">
       <div class="column" id="message_log">
         <p class="text-muted">Session started.</p>

@@ -1,9 +1,14 @@
-#gameHeader {
-    background-color: #019499;
+body {
+    background-color: #6DD1C5;
     color: #EEE0CD;
 }
 
-#playingField {
-    background-color: #6DD1C5;
+#gameHeader {
+    background-color: #019499;
+    border-bottom: 3px solid #41B3A6;
     color: #EEE0CD;
+}
+
+.bgit orderShow {
+    border: 2px solid red 
 }
