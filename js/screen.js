@@ -1,28 +1,27 @@
 // This is going to hold most of our actual logic and do all the work.
+var players = new Map();
+var currentDivers = [];
+
+function divers () { return players.filter(x => x.type == PDiver); }
+
 window.onload = function () {
     // Init AirConsole instance.
     AC = new AirConsole();
 
-    AC.onReady = function () {
-        log("Let's get this party started, fam.");
-    };
-
-    // Gets called when a device connects
-    AC.onConnect = function (device_id) {
-        log("HERE COMES A NEW CHALLENGER: ID {0}".format(device_id));
-    };
-
-    // Gets called when a device disconnects
-    AC.onDisconnect = function (device_id) {
-        log("This dude just pussied out: ID {0}".format(device_id));
-    };
-
-    // Receive a message from a device
-    AC.onMessage = function (device_id, data) {
-        // Receive "greet" message
-        if (data.type === "CWhatsGood") {
-            log("What's good, ID {}?".format(device_id));
-            AC.message(device_id, {type: "SWhatsGood"});
-        }
-    };
+    AC.onReady = () => log("Let's get this party started, fam.");
+    AC.onConnect = id => log("Player arrived: ID {0}".format(id));
+    AC.onDisconnect = id => log("Player left: ID {0}".format(id));
+    
+    // This just delegates to other functions, and usually sends something back.
+    AC.onMessage = handleMsg;
 };
+
+// See shared.js for MPing and MResult.
+
+// Receive a player object from a controller.
+onMsg[MSubmitPlayer] = function (value, device_id) {
+    if (divers.has(device_id)) return Result(RIDExists);
+    else if (divers.any(x => x.name) == value.name) return Result(RNameTaken);
+    else divers.set(device_id, new Diver(device_id, value.name));
+    return [Success(), SyncPlayer(value), ShowWin(WProceed)];
+}
