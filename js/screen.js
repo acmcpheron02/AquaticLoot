@@ -9,12 +9,12 @@ window.onload = function () {
 
     // Gets called when a device connects
     AC.onConnect = function (device_id) {
-        log("HERE COMES A NEW CHALLENGER: ID {}".format(device_id));
+        log("HERE COMES A NEW CHALLENGER: ID {0}".format(device_id));
     };
 
     // Gets called when a device disconnects
     AC.onDisconnect = function (device_id) {
-        log("This dude just pussied out: ID {}".format(device_id));
+        log("This dude just pussied out: ID {0}".format(device_id));
     };
 
     // Receive a message from a device

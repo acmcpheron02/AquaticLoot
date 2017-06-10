@@ -6,7 +6,7 @@ window.onload = function() {
     });
 
     AC.onReady = function () {
-        log("Welcome to the loot-off. You are ID {}.".format(AC.device_id));
+        log("Welcome to the loot-off. You are ID {0}.".format(AC.device_id));
     };
 
     // Overwrite the onMessage method.
