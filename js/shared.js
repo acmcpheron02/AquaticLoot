@@ -5,18 +5,18 @@ var AC = null;
 
 // Controller messages.
 var CMsg = {
-    WhatsGood: "CWhatsGood";
-    SubmitName: "CSubmitName";
-    Proceed: "CProceed";
-    Retreat: "CRetreat";
-}
+    WhatsGood: "CWhatsGood",
+    SubmitName: "CSubmitName",
+    Proceed: "CProceed",
+    Retreat: "CRetreat",
+};
 
 // Screen messages.
 var SMsg = {
-    WhatsGood: "SWhatsGood";
-    NameAccepted: "SNameAccepted";
-    NameRejected: "SNameRejected";
-}
+    WhatsGood: "SWhatsGood",
+    NameAccepted: "SNameAccepted",
+    NameRejected: "SNameRejected",
+};
 
 // Dump stuff to console and the debug div if it exists.
 function log (msg) {
