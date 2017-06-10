@@ -4,6 +4,18 @@ var AC = null;
 var onMsg = {};
 
 
+// Codes. The actual numbers don't matter, but the constants will
+// be the same across all devices.
+var n = 0;
+const MPing = n++, MResult = n++;
+const MShowWin = n++, MSyncPlayer = n++;
+const MSubmitPlayer = n++, MProceed = n++, MBet = n++;
+const PAudience = n++, PDiver = n++;
+const RSuccess = n++, RBadMessage = n++, RIDExists = n++, RNameTaken = n++;
+const WName = n++, WProceed = n++, WBet = n++;
+delete n;
+
+
 // Get an element by id.
 function elem (id) { return document.getElementById(id); }
 
@@ -27,8 +39,8 @@ function handleMsg (device_id, data) {
         AC.message(device_id, Result(RBadMessage));
         return
     }
-    var res = onMsg[data.type](data.value, device_id)
-    if (res.isArray(()) {
+    var res = onMsg[data.type](data.value, device_id);
+    if (res.isArray()) {
         res.forEach(msg => AC.message(device_id, msg));
     } else if (res) {
         AC.message(device_id, res);
@@ -45,7 +57,7 @@ onMsg[MResult] = function (value) {
 // Like the hello message in the scaffolding.
 onMsg[MPing] = function (value) {
     log("Ping from {0}".format(device_id));
-    if (value == 2) return Success() else return Ping(value + 1);
+    if (value == 2) return Success(); else return Ping(value + 1);
 }
 
 
@@ -85,15 +97,3 @@ function SyncPlayer (val)     { return { type: MSyncPlayer, value: val }; }
 function SubmitPlayer (val)   { return { type: MSubmitPlayer, value: val }; }
 function Proceed (val)        { return { type: MProceed, value: val }; }
 function Bet (val)            { return { type: MBet, value: val }; }
-
-
-// Codes. The actual numbers don't matter, but the constants will
-// be the same across all devices.
-var n = 0;
-const MPing = n++, MResult = n++;
-const MShowWin = n++, MSyncPlayer = n++;
-const MProceed = n++, MBet = n++;
-const PAudience = n++, PDiver = n++;
-const RSuccess = n++, RBadMessage = n++, RIDExists = n++, RNameTaken = n++;
-const WName = n++, WProceed = n++, WBet = n++;
-delete n;

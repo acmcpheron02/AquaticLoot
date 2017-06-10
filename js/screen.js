@@ -20,8 +20,8 @@ window.onload = function () {
 
 // Receive a player object from a controller.
 onMsg[MSubmitPlayer] = function (value, device_id) {
-    if divers.has(device_id) return Result(RIDExists);
-    else if divers.any(x => x.name == value.name) return Result(RNameTaken);
+    if (divers.has(device_id)) return Result(RIDExists);
+    else if (divers.any(x => x.name) == value.name) return Result(RNameTaken);
     else divers.set(device_id, new Diver(device_id, value.name));
     return [Success(), SyncPlayer(value), ShowWin(WProceed)];
 }
