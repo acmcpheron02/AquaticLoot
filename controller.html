@@ -4,7 +4,7 @@
   Here you can display all the buttons etc to control your game.
  -->
 <!DOCTYPE HTML>
-<html class="h-100">
+<html class=>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Super advanced controller</title>
@@ -12,10 +12,10 @@
   <link rel="stylesheet" type="text/css" href="css/shared.css">
   <link rel="stylesheet" type="text/css" href="css/controller.css">
 </head>
-<body class="h-100">
-  <div id="playerInfo" class="container-fluid">
+<body>
+  <div id="playerInfo" class="container m-3">
     <div class="row">
-      <div id="playerAvatar" class="col-5 img-fluid my-auto">
+      <div id="playerAvatar" class="col-5 pt-3 img-fluid my-auto">
         <img id="playerAvatarSVG" src="aquaticdiver-test.svg" 
           alt="player diver avatar">
       </div>
@@ -36,13 +36,15 @@
         </div>
       </div>
     </div>
-
-    <div id="buttonReturn" class="col borderShow">
-      <h1>Surface</h1>
-    </div>
-
-    <div id="buttonDeeper" class="col borderShow">
-      <h1>Go Deeper!</h1>
+  </div>
+  <div id="controllerButtons" class="container fixed-bottom m-3">
+    <div class="row h-25 mb-3 align-items-end">
+      <div id="buttonReturn" class="col-12 py-5 my-2 text-center">
+        <h1>Surface</h1>
+      </div>
+      <div id="buttonDeeper" class="col-12 py-5 my-2 text-center">
+        <h1>Go Deeper!</h1>
+      </div>
     </div>
   </div>
 

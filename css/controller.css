@@ -1,0 +1,25 @@
+html, body {
+  height: 100%;
+  max-height: 100%;
+}
+
+body {
+  background-color: #EEE0CD;
+}
+
+#playerInfo {
+  height: 40%;
+  background-color: #6DD1C5;
+}
+
+#buttonReturn {
+  background-color: #41B3A6;
+}
+
+#buttonDeeper {
+  background-color: #019499;
+}
+
+/*#controllerButtons {
+  height: 60%;
+}*/
