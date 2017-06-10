@@ -1,27 +1,40 @@
 // Controllers don't have much actual work to do.
+var ID = null, SCREEN = AirConsole.SCREEN;
+var currentWin = WName;
+var winIDs = {
+    WName: "name_screen",
+    WProceed: "proceed_screen",
+    WBet: "bet_screen",
+}
+
 window.onload = function() {
     // Init the AirConsole object
     AC = new AirConsole({
         orientation: AirConsole.ORIENTATION_PORTRAIT
     });
+    ID = AC.device_id;
 
-    AC.onReady = function () {
-        log("Welcome to the loot-off. You are ID {0}.".format(AC.device_id));
-    };
+    AC.onReady = () => log("Welcome. You are ID {0}.".format(ID));
+    AC.onMessage = handleMsg;
 
-    // Overwrite the onMessage method.
-    // Whenever we receive a message from the screen we display it on our log-div
-    AC.onMessage = function (device_id, data) {
-        if (device_id === AirConsole.SCREEN) {
-            if (data == SMsg.WhatsGood) {
-                log("oh my god screenpai noticed me uguuuuu~");
-            }
-        }
-    };
-
-    // Send data to the screen, when clicking on the button
-    var hello_button = document.getElementById('hello_button');
-    hello_button.addEventListener('click', function() {
-        AC.message(AirConsole.SCREEN, { type: "CWhatsGood" });
-    });
+    // Send data to the screen, when clicking on the button.
+    onClick("ping_btn", () => AC.message(SCREEN, Ping()));
+    onClick("join_divers_btn", submitDiver);
+    onClick("join_audience_btn", submitAudience);
 };
+
+function submitAudience () {
+    var player = Player(AC.device_id, elem("name_input").value);
+    AC.message(AirConsole.SCREEN, SubmitPlayer(player));
+}
+
+function submitDiver () {
+    var player = Diver(AC.device_id, elem("name_input").value);
+    AC.message(AirConsole.SCREEN, SubmitPlayer(player));
+}
+
+onMsg[ShowWin] = function (value) {
+    elem(winIDs[currentWin]).style.display = "none";
+    current_win = value;
+    elem(winIDs[currentWin]).style.display = "block";
+}
