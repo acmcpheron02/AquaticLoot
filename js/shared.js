@@ -19,8 +19,8 @@ const relicValues = [5, 5, 5, 10, 10];
 const winIDs = {
     WName: "playerNameScr",
     WProceed: "contDecisionScr",
-    WBet: "waitScr",  // TODO
-    WWait: "waitScr",
+    WBet: "contDecisionScr",  // TODO
+    WWait: "contDecisionScr",
     WTitle: "welcomeScr",
     WGame: "cardScr",
     WResults: "resultsScr",
@@ -68,7 +68,7 @@ function handleMsg (device_id, data) {
 // We might have to react to some failure results, but usually, do nothing.
 onMsg[MResult] = function (value) {
     switch (value) {
-        case MSuccess: return false; break;
+        case RSuccess: return false; break;
     }
 }
 

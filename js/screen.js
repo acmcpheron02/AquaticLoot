@@ -36,7 +36,8 @@ onMsg[MSubmitPlayer] = function (value, device_id) {
     else if (Array.from(players.values).some(x => x.name) == value.name)
         return Result(RNameTaken);
     else players.set(device_id, new Diver(device_id, value.name));
-    log(`${value.name} has joined the game.`);
+    console.log(value);
+    log("{0} has joined the game.".format(value.name));
     return [Success(), SyncPlayer(value), ShowWin(WWait)];
 }
 
