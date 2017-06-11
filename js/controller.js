@@ -1,11 +1,5 @@
 // Controllers don't have much actual work to do.
 var ID = null, SCREEN = AirConsole.SCREEN;
-var currentWin = WName;
-var winIDs = {
-    WName: "name_screen",
-    WProceed: "proceed_screen",
-    WBet: "bet_screen",
-}
 var player = null;
 
 window.onload = function() {
@@ -31,19 +25,17 @@ onMsg[MSyncPlayer] = function (value) {
     updateDisplays();
 }
 
-// Shows the player panel, and switches between multiple button panels.
-onMsg[MShowWin] = function (value) {
-    elem("player_panel").style.display = value == WName ? "none" : "block";
-    elem(winIDs[currentWin]).style.display = "none";
-    current_win = value;
-    elem(winIDs[currentWin]).style.display = "block";
-    updateDisplays();
+
+onMsg[MShowWin] = showWin;
+
+function showWinDev (win) {
+    elem("playerPanel").style.display = win == WName ? "none" : "block";
 }
 
 function updateDisplays () {
-    elem("player_name").innerHTML = player.name;
-    elem("player_loot").innerHTML = player.loot;
-    elem("player_stash").innerHTML = player.stash;
+    elem("playerName").innerHTML = player.name;
+    elem("playerLoot").innerHTML = player.loot;
+    elem("playerStash").innerHTML = player.stash;
 }
 
 // Button actions.

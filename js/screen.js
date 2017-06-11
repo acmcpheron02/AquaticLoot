@@ -5,12 +5,13 @@ var deck = [];
 var relicValues = [5, 5, 5, 10, 10];
 var relicsFound = 0;
 var events = [];
-var inGame = false;
 var roundNum = 0;
 
 function divers () { return players.filter({type: PDiver}); }
 function audience () { return players.exclude({type: PDiver}); }
 
+
+// Set the message handler and create the deck.
 window.onload = function () {
     // Init AirConsole instance.
     AC = new AirConsole();
@@ -22,6 +23,7 @@ window.onload = function () {
     // This just delegates to other functions, and usually sends something back.
     AC.onMessage = handleMsg;
     
+    showWin(WTitle);
     createDeck();
 };
 
@@ -47,6 +49,10 @@ onMsg[MProceed] = function (value, device_id) {
 onMsg[MBet]   = function () { log("TODO!"); }
 onMsg[MScrew] = function () { log("TODO!"); }
 
+function showWinDev ()      { log("TODO!"); }
+function updateDisplays ()  { log("TODO!"); }
+
+
 // Creates a dumb object representing an event.
 function Event (type, value = 0, subtype = null) {
     return { type: type, value: value, subtype: subtype; }
@@ -58,6 +64,7 @@ function createDeck () {
     for (i of (1).upto(5)) (3).times(() => deck.push(Event(EHazard, 0, i)));
     deck.shuffle();
 }
+
 
 // Start a new round.
 function roundStart (num) {
