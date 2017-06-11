@@ -7,4 +7,33 @@ body {
     background-color: #019499;
     border-bottom: 3px solid #41B3A6;
     color: #EEE0CD;
+    height: 10%;
+}
+
+#gameTitle {
+    height: 100%;
+}
+
+#playingField {
+    height: 80%
+}
+
+#playingField img {
+    margin-bottom: 10px;
+}
+
+#cardHistory {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-between;
+    align-items: end;
+}
+
+#cardHistory img {
+    margin: 5px;
+}
+
+#cardHistory img:last-child {
+    display: none;
 }
