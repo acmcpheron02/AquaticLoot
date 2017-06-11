@@ -150,3 +150,16 @@ body {
 .obstacleCard .cardValue{
     font-size: 20px;
 }
+
+#message_log {
+    position: absolute;
+    max-height: 160px;
+    overflow: hidden;
+}    
+
+#message_log p {   
+    margin: 4px;
+    line-height: 1;
+    bottom: 0;
+    left: 0;
+}
