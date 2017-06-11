@@ -45,7 +45,7 @@ function log (msg) {
     var el = document.createElement("p");
     el.innerHTML = msg;
     console.log(msg);
-    document.getElementById("message_log").prependChild(el);
+    elem("message_log").insertBefore(el, elem("message_log").firstChild);
 }
 
 
