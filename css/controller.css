@@ -21,6 +21,11 @@ body {
   background-color: #019499;
 }
 
-/*#controllerButtons {
-  height: 60%;
-}*/
+#buttonPlayGame, #buttonWatchGame {
+    background-color: #fff;
+}
+
+/* - - - Some display toggles - - - */
+#contDecisionScr {
+  display: none;
+}
