@@ -23,7 +23,7 @@ body {
 }
 
 #cardScr {
-    display: none;
+    display: show;
 }
 
 #cardHistory {
@@ -39,6 +39,10 @@ body {
 }
 
 #cardHistory img:last-child {
+    display: none;
+}
+
+#welcomeScr {
     display: none;
 }
 
@@ -77,4 +81,29 @@ body {
 #avatarScr {
     display: flex;
     justify-content: space-between;
+}
+
+.cardElement {
+    position: relative;
+    background-color: #019499;
+    border: 3px solid #41B3A6;
+    height: 100px;
+    width: 100px;
+}
+
+.cardElement img {
+    margin: 0;
+}
+
+.cardElement span {
+    line-height: 0;
+    position: absolute;
+    z-index: 20;
+    font-size: 40px;
+    text-align: center;
+    margin: 0;
+    right: 0;
+    left: 0;
+    top: 50%;
+    text-shadow: 3px 3px rgba(20, 20, 20, 0.6); 
 }
