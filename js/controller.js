@@ -16,7 +16,7 @@ window.onload = function() {
     onClick("buttonWatchGame", submitAudience);
     onClick("buttonDeeper", submitProceed);
     onClick("buttonReturn", submitRetreat);
-    onClick("buttonScrew", beginScrew);  // This ain't exist yet lol
+    //onClick("buttonScrew", beginScrew);  // This ain't exist yet lol
 };
 
 // Just update player values on the controller screen.

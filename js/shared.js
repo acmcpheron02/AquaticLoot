@@ -14,22 +14,24 @@ const SUnable = n++, SAble = n++, SLocked = n++, SUsed = n++;    // Screw states
 const ELoot = n++, ERelic = n++, EHazard = n++;                   // Event types
 delete n;
 
+const relicValues = [5, 5, 5, 10, 10];
+
+const winIDs = {
+    WName: "playerNameScr",
+    WProceed: "contDecisionScr",
+    WBet: "waitScr",  // TODO
+    WWait: "waitScr",
+    WTitle: "welcomeScr",
+    WGame: "cardScr",
+    WResults: "resultsScr",
+};
+
 
 // Common file for both.
 Sugar.extend();
 var AC = null;
 var onMsg = {};
 var currentWin = null;
-
-const winIDs = {
-    WName: "playerNameScr",
-    WProceed: "contDecisionScr",
-    WBet: "betScr",
-    WWait: "waitScr",
-    WTitle: "welcomeScr",
-    WGame: "cardScr",
-    WResults: "resultsScr",
-};
 
 
 // Get an element by id.
@@ -74,6 +76,17 @@ onMsg[MResult] = function (value) {
 onMsg[MPing] = function (value) {
     log("Ping from {0}".format(device_id));
     if (value == 2) return Success(); else return Ping(value + 1);
+}
+
+
+// Pop up a message window, set a timeout for it to disappear,
+// and set another timeout to do something else.
+function msgWin (msg, time, fun) {
+    elem("msgWin").innerHTML = msg;
+    // Actually we're not gonna make a vanish timer.
+    if (fun !== undefined) {
+        createTimeout(fun, time);
+    }
 }
 
 // Show the specified window.

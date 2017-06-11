@@ -2,10 +2,10 @@
 var players = new Map();
 var divers = [], audience = [];
 var deck = [];
-var relicValues = [5, 5, 5, 10, 10];
 var relicsFound = 0;
 var events = [];
-var roundNum = 0;
+var round = 0;
+var roundOver = false;
 
 function divers () { return players.filter({type: PDiver}); }
 function audience () { return players.exclude({type: PDiver}); }
@@ -24,7 +24,7 @@ window.onload = function () {
     AC.onMessage = handleMsg;
     
     showWin(WTitle);
-    createDeck();
+    onClick("startGameButton", beginGame);
 };
 
 // See shared.js for MPing and MResult.
@@ -34,6 +34,7 @@ onMsg[MSubmitPlayer] = function (value, device_id) {
     if (divers.has(device_id)) return Result(RIDExists);
     else if (divers.any(x => x.name) == value.name) return Result(RNameTaken);
     else divers.set(device_id, new Diver(device_id, value.name));
+    log(`${value.name} has joined the game.`);
     return [Success(), SyncPlayer(value), ShowWin(WWait)];
 }
 
@@ -42,20 +43,23 @@ onMsg[MProceed] = function (value, device_id) {
     if (divers.none({id: device_id})) return Result(RNotDiver);
     players.get(device_id).proceed = value;
     AC.message(device_id, ShowWin(WWait));
-    if (divers.count({proceed: DNone}) == 0) beforeReveal();
+    log(`${players.get(device_id).name} has submitted a decision.`);
+    if (divers.count({proceed: DNone}) == 0) {
+        if (roundOver) roundStart(); else beforeReveal();
+    }
     return Success();
 }
 
 onMsg[MBet]   = function () { log("TODO!"); }
 onMsg[MScrew] = function () { log("TODO!"); }
 
-function showWinDev ()      { log("TODO!"); }
-function updateDisplays ()  { log("TODO!"); }
+function showWinDev ()      { return; }  // TODO
+function updateDisplays ()  { return; }  // TODO
 
 
 // Creates a dumb object representing an event.
 function Event (type, value = 0, subtype = null) {
-    return { type: type, value: value, subtype: subtype; }
+    return { type: type, value: value, subtype: subtype };
 }
 
 // Create the initial deck.
@@ -66,18 +70,27 @@ function createDeck () {
 }
 
 
+// Start the game, already!
+function beginGame () {
+    createDeck();
+    showWin(WGame);
+    roundStart();
+}
+
 // Start a new round.
 function roundStart (num) {
+    roundOver = false;
     events = [];
-    roundNum++;
-    deck.append(new Relic(roundNum));
+    deck.append(Event(ERelic, 0, ++round));
     deck = deck.shuffle();
     for (p of players) (p.type = PDiver ? divers : audience).push(p);
+    log("Starting round " + round);
     revealEvent();
 }
 
 // Send messages to the controllers.
 function nextEvent () {
+    log("Awaiting decisions from players for next round.");
     for (d of divers) AC.message(d.id, ShowWin(WProceed));
     for (a of audience) AC.message(a.id, ShowWin(WBet));
     // And then we wait for the Proceed message to say everyone's ready.
@@ -97,6 +110,8 @@ function beforeReveal () {
             p.stash += total / leaving.length + p.loot;
             p.loot = 0;
         }
+        log("The following divers are leaving and split {0} loot: {1}".format(
+         total % leaving.length, leaving.map("name").join(", ")));
         // Only someone leaving on their own can collect the relics.
         if (leaving.length == 1) {
             var relics = events.remove(e => e.type == ERelic);
@@ -104,6 +119,7 @@ function beforeReveal () {
                 r.value = relicValues[relicsFound++];
                 leaving[0].relics.append(r);
             }
+            log(`This diver has also claimed ${relics.length} relics.`);
         }
     }
     divers = newDivers;
@@ -124,16 +140,21 @@ function revealEvent () {
             d.loot += split;
             AC.message(d.id, SyncPlayer(d));
         }
+        log("The remaining divers split {0} loot and leave {1} behind.".format(
+         split, event.value));
     } else if (event.type == ERelic) {
         // TODO: Probably just show nice graphic event. Nothing can happen until
         // a player leaves alone with it.
+        log("A relic has appeared! Leave alone to grab it.");
     } else if (event.type == EHazard) {
         for (i of (1).upTo(5)) {
-            if (events.count(e => e.type == EHazard && e.type == i) == 2) {
+            if (events.count(e => e.type == EHazard && e.subtype == i) == 2) {
                 overRun();
                 return;
             }
         }
+        log("Hazard type {0} has appeared. ".format(event.subtype) +
+         "A second of the same type will end the current round.");
     }
     nextEvent();
 }
@@ -142,12 +163,31 @@ function revealEvent () {
 function overRun () {
     // If an overrun happens, the last event to have come out is guaranteed to
     // be a hazard. We'll pop it out of the deck.
+    log("An overrun has occurred. The offending hazard will be removed " +
+     "from the deck.");
     events.pop();
     for (d of divers) d.loot = 0;
+    finishRound();
 }
 
+// Wait for players to want to move to the next round.
 function finishRound () {
+    log("The round has ended. Remaining relics are lost.");
+    roundOver = true;
+    events.remove(e => e.type == ERelic);
     deck = deck.append(events).shuffle();
     // TODO: Wait for approval to move to next round, or finish the game.
-    for (p of players) AC.message(p.id, ShowWin(WWait));
+    if (round < 5) {
+        log("Awaiting approval to move to next round.");
+        for (p of players) AC.message(p.id, ShowWin(WProceed));
+    } else {
+        finishGame();
+    }
+}
+
+// Show who won.
+function finishGame () {
+    var standings = divers().sortBy("stash");
+    log("Game over. The winner is {0} with {1} stashed loot.".format(
+     standings.last().name, standings.last().loot));
 }
