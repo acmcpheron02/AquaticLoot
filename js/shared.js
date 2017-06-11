@@ -2,6 +2,15 @@
 Sugar.extend();
 var AC = null;
 var onMsg = {};
+var currentWin = null;
+const winIDs = {
+    WName: "nameWin",
+    WProceed: "proceedWin",
+    WBet: "betWin",
+    WTitle: "titleScreen",
+    WGame: "gameScreen",
+    WResults: "resultsScreen",
+};
 
 
 // Codes. The actual numbers don't matter, but the constants will
@@ -13,6 +22,7 @@ const MSubmitPlayer = n++, MProceed = n++, MBet = n++, MScrew = n++; // Ctl msgs
 const PAudience = n++, PDiver = n++;                             // Player types
 const RSuccess = n++, RBadMessage = n++;                        // Failure codes
 const RIDExists = n++, RNameTaken = n++, RNotDiver = n++;       // Failure codes
+const WTitle = n++, WGame = n++, WResults = n++                 // Screen windows
 const WName = n++, WWait = n++, WProceed = n++, WBet = n++;     // Ctrlr windows
 const DNone = n++, DProceed = n++, DRetreat = n++;          // Proceed decisions
 const SUnable = n++, SAble = n++, SLocked = n++, SUsed = n++;    // Screw states
@@ -62,6 +72,16 @@ onMsg[MResult] = function (value) {
 onMsg[MPing] = function (value) {
     log("Ping from {0}".format(device_id));
     if (value == 2) return Success(); else return Ping(value + 1);
+}
+
+// Show the specified window.
+function showWin (win) {
+    elem(winIDs[currentWin]).style.display = "none";
+    current_win = value;
+    elem(winIDs[currentWin]).style.display = "block";
+    // The last two are implemented in screen/controller.
+    showWinDev(win);
+    updateDisplays(win);
 }
 
 
