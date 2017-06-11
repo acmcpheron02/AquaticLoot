@@ -12,11 +12,11 @@ window.onload = function() {
     AC.onReady = () => log("Welcome. You are ID {0}.".format(ID));
     AC.onMessage = handleMsg;
 
-    onClick("join_divers_btn", submitDiver);
-    onClick("join_audience_btn", submitAudience);
-    onClick("proceed_btn", submitProceed);
-    onClick("retreat_btn", submitRetreat);
-    onClick("screw_btn", beginScrew);
+    onClick("buttonPlayGame", submitDiver);
+    onClick("buttonWatchGame", submitAudience);
+    onClick("buttonDeeper", submitProceed);
+    onClick("buttonReturn", submitRetreat);
+    onClick("buttonScrew", beginScrew);  // This ain't exist yet lol
 };
 
 // Just update player values on the controller screen.
@@ -34,18 +34,20 @@ function showWinDev (win) {
 
 function updateDisplays () {
     elem("playerName").innerHTML = player.name;
-    elem("playerLoot").innerHTML = player.loot;
-    elem("playerStash").innerHTML = player.stash;
+    elem("playerActivity").innerHTML = player.type == PDiver ?
+     "Diver" : "Audience";
+    elem("playerGoldRound").innerHTML = "Loot: {0}".format(player.loot);
+    elem("playerGoldTotal").innerHTML = "Stash: {0}".format(player.stash);
 }
 
 // Button actions.
 function submitAudience () {
-    player = Player(AC.device_id, elem("name_input").value);
+    player = Player(AC.device_id, elem("nameInput").value);
     AC.message(SCREEN, SubmitPlayer(player));
 }
 
 function submitDiver () {
-    player = Diver(AC.device_id, elem("name_input").value);
+    player = Diver(AC.device_id, elem("nameInput").value);
     AC.message(SCREEN, SubmitPlayer(player));
 }
 
