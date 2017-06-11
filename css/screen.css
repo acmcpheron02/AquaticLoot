@@ -48,13 +48,33 @@ body {
 
 .avatarElement {
     position: relative;
+    height: 200px;
+    width: 130px;
+    flex: 0 0 auto;
 }
 
 .avatarElement .avatar {
+    height: 176px;
     position: absolute;
-    top: 20px;
+    top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    flex: 0 0 auto;
+}
+
+.avatarElement .name {
+    position: absolute;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
+    font-size: 24px;
+    flex: 0 0 auto;
+}
+
+#avatarScr {
+    display: flex;
+    justify-content: space-between;
 }
