@@ -13,9 +13,10 @@ const MSubmitPlayer = n++, MProceed = n++, MBet = n++, MScrew = n++; // Ctl msgs
 const PAudience = n++, PDiver = n++;                             // Player types
 const RSuccess = n++, RBadMessage = n++;                        // Failure codes
 const RIDExists = n++, RNameTaken = n++, RNotDiver = n++;       // Failure codes
-const WName = n++, WWait = n++, WProceed = n++, WBet = n++;       // Ctl windows
+const WName = n++, WWait = n++, WProceed = n++, WBet = n++;     // Ctrlr windows
 const DNone = n++, DProceed = n++, DRetreat = n++;          // Proceed decisions
 const SUnable = n++, SAble = n++, SLocked = n++, SUsed = n++;    // Screw states
+const ELoot = n++, ERelic = n++, EHazard = n++;                   // Event types
 delete n;
 
 
@@ -105,3 +106,4 @@ function SyncPlayer (val)     { return { type: MSyncPlayer, value: val }; }
 function SubmitPlayer (val)   { return { type: MSubmitPlayer, value: val }; }
 function Proceed (val)        { return { type: MProceed, value: val }; }
 function Bet (val)            { return { type: MBet, value: val }; }
+function Screw (val)          { return { type: MScrew, value: val }; }

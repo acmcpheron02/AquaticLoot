@@ -6,6 +6,7 @@ var winIDs = {
     WProceed: "proceed_screen",
     WBet: "bet_screen",
 }
+var player = null;
 
 window.onload = function() {
     // Init the AirConsole object
@@ -17,24 +18,45 @@ window.onload = function() {
     AC.onReady = () => log("Welcome. You are ID {0}.".format(ID));
     AC.onMessage = handleMsg;
 
-    // Send data to the screen, when clicking on the button.
-    //onClick("ping_btn", () => AC.message(SCREEN, Ping()));
     onClick("join_divers_btn", submitDiver);
     onClick("join_audience_btn", submitAudience);
+    onClick("proceed_btn", submitProceed);
+    onClick("retreat_btn", submitRetreat);
+    onClick("screw_btn", beginScrew);
 };
 
-function submitAudience () {
-    var player = Player(AC.device_id, elem("name_input").value);
-    AC.message(AirConsole.SCREEN, SubmitPlayer(player));
+// Just update player values on the controller screen.
+onMsg[MSyncPlayer] = function (value) {
+    player = value;
+    updateDisplays();
 }
 
-function submitDiver () {
-    var player = Diver(AC.device_id, elem("name_input").value);
-    AC.message(AirConsole.SCREEN, SubmitPlayer(player));
-}
-
-onMsg[ShowWin] = function (value) {
+// Shows the player panel, and switches between multiple button panels.
+onMsg[MShowWin] = function (value) {
+    elem("player_panel").style.display = value == WName ? "none" : "block";
     elem(winIDs[currentWin]).style.display = "none";
     current_win = value;
     elem(winIDs[currentWin]).style.display = "block";
+    updateDisplays();
 }
+
+function updateDisplays () {
+    elem("player_name").innerHTML = player.name;
+    elem("player_loot").innerHTML = player.loot;
+    elem("player_stash").innerHTML = player.stash;
+}
+
+// Button actions.
+function submitAudience () {
+    player = Player(AC.device_id, elem("name_input").value);
+    AC.message(SCREEN, SubmitPlayer(player));
+}
+
+function submitDiver () {
+    player = Diver(AC.device_id, elem("name_input").value);
+    AC.message(SCREEN, SubmitPlayer(player));
+}
+
+function submitProceed ()  { AC.message(SCREEN, Proceed(true)); }
+function submitRetreat ()  { AC.message(SCREEN, Proceed(false)); }
+function beginScrew ()     { AC.message(SCREEN, Screw(null)); }
