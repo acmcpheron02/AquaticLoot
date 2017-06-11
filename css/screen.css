@@ -45,3 +45,16 @@ body {
 #welcomeScr .jumbotron{
     background-color: #41B3A6;
 }
+
+.avatarElement {
+    position: relative;
+}
+
+.avatarElement .avatar {
+    position: absolute;
+    top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
