@@ -83,6 +83,11 @@ body {
     justify-content: space-between;
 }
 
+butBigger {
+    height: 200px;
+    width: 200px;
+}
+
 .cardElement {
     position: relative;
     background-color: #019499;
