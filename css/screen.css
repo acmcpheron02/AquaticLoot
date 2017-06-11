@@ -27,7 +27,7 @@ body {
 }
 
 #cardScr {
-    display: show;
+    display: none;
 }
 
 #cardHistory {
@@ -48,7 +48,7 @@ body {
 }*/
 
 #welcomeScr {
-    display: none;
+    display: show;
 }
 
 #welcomeScr .jumbotron{
