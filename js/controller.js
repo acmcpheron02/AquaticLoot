@@ -22,7 +22,7 @@ window.onload = function() {
 
 // Just update player values on the controller screen.
 onMsg[MSyncPlayer] = function (value) {
-    player = value;
+    player = Sugar.Object(value);
     updateDisplays();
 }
 
