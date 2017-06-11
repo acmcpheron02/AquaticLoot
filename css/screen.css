@@ -22,6 +22,10 @@ body {
     margin-bottom: 10px;
 }
 
+#cardScr {
+    display: none;
+}
+
 #cardHistory {
     display: flex;
     flex-wrap: wrap;
@@ -36,4 +40,8 @@ body {
 
 #cardHistory img:last-child {
     display: none;
+}
+
+#welcomeScr .jumbotron{
+    background-color: #41B3A6;
 }
