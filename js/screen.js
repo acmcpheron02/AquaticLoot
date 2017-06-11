@@ -33,7 +33,7 @@ window.onload = function () {
 // Receive a player object from a controller.
 onMsg[MSubmitPlayer] = function (value, device_id) {
     if (players.has(device_id)) return Result(RIDExists);
-    else if (players.any(x => x.name) == value.name) return Result(RNameTaken);
+    else if (players.some(x => x.name) == value.name) return Result(RNameTaken);
     else players.set(device_id, new Diver(device_id, value.name));
     log(`${value.name} has joined the game.`);
     return [Success(), SyncPlayer(value), ShowWin(WWait)];
