@@ -1,18 +1,3 @@
-// Common file for both.
-Sugar.extend();
-var AC = null;
-var onMsg = {};
-var currentWin = null;
-const winIDs = {
-    WName: "nameWin",
-    WProceed: "proceedWin",
-    WBet: "betWin",
-    WTitle: "titleScreen",
-    WGame: "gameScreen",
-    WResults: "resultsScreen",
-};
-
-
 // Codes. The actual numbers don't matter, but the constants will
 // be the same across all devices.
 var n = 0;
@@ -22,12 +7,29 @@ const MSubmitPlayer = n++, MProceed = n++, MBet = n++, MScrew = n++; // Ctl msgs
 const PAudience = n++, PDiver = n++;                             // Player types
 const RSuccess = n++, RBadMessage = n++;                        // Failure codes
 const RIDExists = n++, RNameTaken = n++, RNotDiver = n++;       // Failure codes
-const WTitle = n++, WGame = n++, WResults = n++                 // Screen windows
+const WTitle = n++, WGame = n++, WResults = n++                // Screen windows
 const WName = n++, WWait = n++, WProceed = n++, WBet = n++;     // Ctrlr windows
 const DNone = n++, DProceed = n++, DRetreat = n++;          // Proceed decisions
 const SUnable = n++, SAble = n++, SLocked = n++, SUsed = n++;    // Screw states
 const ELoot = n++, ERelic = n++, EHazard = n++;                   // Event types
 delete n;
+
+
+// Common file for both.
+Sugar.extend();
+var AC = null;
+var onMsg = {};
+var currentWin = null;
+
+const winIDs = {
+    WName: "playerNameScr",
+    WProceed: "contDecisionScr",
+    WBet: "betScr",
+    WWait: "waitScr",
+    WTitle: "welcomeScr",
+    WGame: "cardScr",
+    WResults: "resultsScr",
+};
 
 
 // Get an element by id.
