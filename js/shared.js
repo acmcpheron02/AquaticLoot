@@ -58,7 +58,7 @@ function handleMsg (device_id, data) {
         return
     }
     var res = onMsg[data.type](data.value, device_id);
-    if (res.isArray()) {
+    if (Sugar.isArray(res)) {
         res.forEach(msg => AC.message(device_id, msg));
     } else if (res) {
         AC.message(device_id, res);
