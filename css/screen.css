@@ -27,20 +27,21 @@ body {
 }
 
 #cardHistory {
+    clear: both;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    justify-content: space-between;
+    justify-content: left;
     align-items: end;
 }
 
-#cardHistory img {
+#cardHistory .cardElement {
     margin: 5px;
 }
 
-#cardHistory img:last-child {
+/*#cardHistory .cardElement:last-child {
     display: none;
-}
+}*/
 
 #welcomeScr {
     display: none;
@@ -91,11 +92,11 @@ body {
     width: 100px;
 }
 
-.cardElement img {
+.cardElement .cardImage {
     margin: 0;
 }
 
-.cardElement  {
+.cardElement .cardValue {
     line-height: 0;
     position: absolute;
     z-index: 20;
@@ -116,11 +117,11 @@ body {
     width: 200px;
 }
 
-.newCardElement .coin {
+.newCardElement .cardImage {
     margin: 0;
 }
 
-.newCardElement .coinValue {
+.newCardElement .cardValue {
     line-height: 0;
     position: absolute;
     z-index: 20;
