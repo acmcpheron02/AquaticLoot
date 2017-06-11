@@ -7,12 +7,15 @@ var onMsg = {};
 // Codes. The actual numbers don't matter, but the constants will
 // be the same across all devices.
 var n = 0;
-const MPing = n++, MResult = n++;
-const MShowWin = n++, MSyncPlayer = n++;
-const MSubmitPlayer = n++, MProceed = n++, MBet = n++;
-const PAudience = n++, PDiver = n++;
-const RSuccess = n++, RBadMessage = n++, RIDExists = n++, RNameTaken = n++;
-const WName = n++, WProceed = n++, WBet = n++;
+const MPing = n++, MResult = n++;                             // Common messages
+const MShowWin = n++, MSyncPlayer = n++;                      // Screen messages
+const MSubmitPlayer = n++, MProceed = n++, MBet = n++, MScrew = n++; // Ctl msgs
+const PAudience = n++, PDiver = n++;                             // Player types
+const RSuccess = n++, RBadMessage = n++;                        // Failure codes
+const RIDExists = n++, RNameTaken = n++, RNotDiver = n++;       // Failure codes
+const WName = n++, WWait = n++, WProceed = n++, WBet = n++;       // Ctl windows
+const DNone = n++, DProceed = n++, DRetreat = n++;          // Proceed decisions
+const SUnable = n++, SAble = n++, SLocked = n++, SUsed = n++;    // Screw states
 delete n;
 
 
@@ -71,15 +74,20 @@ function Player (id, name) {
         id: id,
         name: name,
         betLoot: 0,
+        screw: SUnable,
     };
 }
 
-// Diver objects are just player objects that are allowed to explore.
+// Diver objects are just player objects that can explore and screw.
 function Diver (id, name) {
     return Player(id, name).add({
         type: PDiver,
-        roundLoot: 0,
-        totalLoot: 0,
+        proceed: DNone,
+        screw: SAble,
+        suitColor: "blue",
+        helmColor: "gold",
+        loot: 0,
+        stash: 0,
         relics: [],
     }, {deep: true});
 }

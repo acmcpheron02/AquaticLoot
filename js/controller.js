@@ -18,7 +18,7 @@ window.onload = function() {
     AC.onMessage = handleMsg;
 
     // Send data to the screen, when clicking on the button.
-    onClick("ping_btn", () => AC.message(SCREEN, Ping()));
+    //onClick("ping_btn", () => AC.message(SCREEN, Ping()));
     onClick("join_divers_btn", submitDiver);
     onClick("join_audience_btn", submitAudience);
 };
