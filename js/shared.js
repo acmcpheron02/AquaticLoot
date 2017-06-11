@@ -45,7 +45,7 @@ function log (msg) {
     var el = document.createElement("p");
     el.innerHTML = msg;
     console.log(msg);
-    document.getElementById("message_log").appendChild(el);
+    document.getElementById("message_log").prependChild(el);
 }
 
 
@@ -105,13 +105,13 @@ function showWin (win) {
 
 // Create a player object.
 function Player (id, name) {
-    return {
+    return Sugar.Object({
         type: PAudience,
         id: id,
         name: name,
         betLoot: 0,
         screw: SUnable,
-    };
+    });
 }
 
 // Diver objects are just player objects that can explore and screw.
