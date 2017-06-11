@@ -83,11 +83,6 @@ body {
     justify-content: space-between;
 }
 
-butBigger {
-    height: 200px;
-    width: 200px;
-}
-
 .cardElement {
     position: relative;
     background-color: #019499;
@@ -100,7 +95,7 @@ butBigger {
     margin: 0;
 }
 
-.cardElement span {
+.cardElement  {
     line-height: 0;
     position: absolute;
     z-index: 20;
@@ -111,4 +106,36 @@ butBigger {
     left: 0;
     top: 50%;
     text-shadow: 3px 3px rgba(20, 20, 20, 0.6); 
+}
+
+.newCardElement {
+    position: relative;
+    background-color: #019499;
+    border: 3px solid #41B3A6;
+    height: 200px;
+    width: 200px;
+}
+
+.newCardElement .coin {
+    margin: 0;
+}
+
+.newCardElement .coinValue {
+    line-height: 0;
+    position: absolute;
+    z-index: 20;
+    font-size: 80px;
+    text-align: center;
+    margin: 0;
+    right: 0;
+    left: 0;
+    top: 50%;
+    text-shadow: 5px 5px rgba(20, 20, 20, 0.6); 
+}
+
+#currentCard {
+    position: fixed;
+    top: 180px;
+    right: 200px;
+    font-size: 32px;
 }
