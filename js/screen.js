@@ -23,7 +23,8 @@ window.onload = function () {
     // This just delegates to other functions, and usually sends something back.
     AC.onMessage = handleMsg;
     
-    showWin(WTitle);
+    currentWin = WTitle;
+    //showWin(WTitle);
     onClick("startGameButton", beginGame);
 };
 

@@ -12,6 +12,7 @@ window.onload = function() {
     AC.onReady = () => log("Welcome. You are ID {0}.".format(ID));
     AC.onMessage = handleMsg;
 
+    currentWin = WName;
     onClick("buttonPlayGame", submitDiver);
     onClick("buttonWatchGame", submitAudience);
     onClick("buttonDeeper", submitProceed);
