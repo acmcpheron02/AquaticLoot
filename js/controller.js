@@ -1,57 +1,47 @@
-// Controllers don't have much actual work to do.
-var ID = null, SCREEN = AirConsole.SCREEN;
-var player = null;
+/**
+  This file will be included by the controller.html
+*/
 
-window.onload = function() {
-    // Init the AirConsole object
-    AC = new AirConsole({
-        orientation: AirConsole.ORIENTATION_PORTRAIT
+var init = function() {
+  var message_log_ele = document.getElementById('message_log');
+
+  // Init the AirConsole object
+  var air_console = new AirConsole({
+    orientation: AirConsole.ORIENTATION_PORTRAIT
+  });
+
+  air_console.onReady = function() {
+    appendTextToElement(message_log_ele, "You are device " + this.device_id);
+  };
+
+  // Overwrite the onMessage method.
+  // Whenever we receive a message from the screen we display it on our log-div
+  air_console.onMessage = function(device_id, data) {
+    if (device_id === AirConsole.SCREEN) {
+      // If the data inlcudes { message: <String|Number> }, we print it to the screen
+      if (data.message) {
+        appendTextToElement(message_log_ele, data.message);
+      }
+    }
+  };
+
+  // Send data to the screen, when clicking on the button
+  var hello_button = document.getElementById('hello_button');
+  hello_button.addEventListener('click', function() {
+    air_console.message(AirConsole.SCREEN, {
+      action: AC.Action.SayHello, // see js/shared.js file
+      message: 'Oh hellow screen!'
     });
-    ID = AC.device_id;
+  });
 
-    AC.onReady = () => log("Welcome. You are ID {0}.".format(ID));
-    AC.onMessage = handleMsg;
+  // Send action to screen to move the cube
+  var move_cube_button = document.getElementById('move_cube');
+  move_cube_button.addEventListener('click', function() {
+    air_console.message(AirConsole.SCREEN, {
+      action: AC.Action.MoveCube
+    });
+  });
 
-    currentWin = WName;
-    onClick("buttonPlayGame", submitDiver);
-    onClick("buttonWatchGame", submitAudience);
-    onClick("buttonDeeper", submitProceed);
-    onClick("buttonReturn", submitRetreat);
-    //onClick("buttonScrew", beginScrew);  // This ain't exist yet lol
 };
 
-// Just update player values on the controller screen.
-onMsg[MSyncPlayer] = function (value) {
-    player = Sugar.Object(value);
-    updateDisplays();
-}
-
-
-onMsg[MShowWin] = showWin;
-
-function showWinDev (win) {
-    elem("playerPanel").style.display = win == WName ? "none" : "block";
-}
-
-function updateDisplays () {
-    elem("playerName").innerHTML = player.name;
-    elem("playerActivity").innerHTML = player.type == PDiver ?
-     "Diver" : "Audience";
-    elem("playerGoldRound").innerHTML = "Loot: {0}".format(player.loot);
-    elem("playerGoldTotal").innerHTML = "Stash: {0}".format(player.stash);
-}
-
-// Button actions.
-function submitAudience () {
-    player = Player(AC.device_id, elem("nameInput").value);
-    AC.message(SCREEN, SubmitPlayer(player));
-}
-
-function submitDiver () {
-    player = Diver(AC.device_id, elem("nameInput").value);
-    AC.message(SCREEN, SubmitPlayer(player));
-}
-
-function submitProceed ()  { AC.message(SCREEN, Proceed(true)); }
-function submitRetreat ()  { AC.message(SCREEN, Proceed(false)); }
-function beginScrew ()     { AC.message(SCREEN, Screw(null)); }
+window.onload = init;

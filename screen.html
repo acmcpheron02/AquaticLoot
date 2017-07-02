@@ -1,118 +1,31 @@
-<!--AirConsole Scaffold - http://developers.airconsole.com
+<!--
+  AirConsole Scaffold - http://developers.airconsole.com
   The screen.html is loaded by the "big screen" - like your laptop.
-  This is where the main game is "living".-->
+  This is where the main game is "living".
+ -->
 <!DOCTYPE HTML>
-<html class="h-100">
+<html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Aquatic Loot</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/shared.css">
-  <link rel="stylesheet" type="text/css" href="css/screen.css">
+  <title>AirConsole Screen Scaffold - airconsole.com</title>
+  <link rel="stylesheet" type="text/css" href="styles/shared.css">
+  <link rel="stylesheet" type="text/css" href="styles/screen.css">
 </head>
-<body class="h-100">
-  
-<!--Game Decision Screen-->
-  <div id="gameDecisionScr">
-    <div id="gameHeader" class="container-fluid">
-      <div id="gameTitle" class="row align-items-center justify-content-between p-1">
-        <div class="col-1"></div>
-        <div class="col-6 my-2">
-          <h1 class="m-0">Aquatic Loot</h1>
-        </div>
-        <div class="col-4 my-2">
-          <p class="m-0 text-right">Where Atlantis Used To Be</p>
-        </div>
-        <div class="col-1"></div>
-      </div>
-    </div>
-    <div id="playingField" class="container-fluid">
-      <div class="row h-100">
-        <div class="col-1"></div>
-        <div id="avatarScr" class="col-5 my-3 borderShow">
-          
-        </div>
-        <!--Welcome Screen Section-->
-        <div id="welcomeScr" class="col-5 my-3">
-          <div class="jumbotron">
-            <h1 class="display-3">Aquatic Loot</h1>
-            <p class="lead">Add at least 1 players to begin</p>
-            <hr class="my-4">
-            <p>This game is best played with 3 to 8 people.</p>
-            <p class="lead">
-              <div id="startGameButton" class="btn btn-primary btn-lg">Start Game</div>
-            </p>
-          </div>
-        </div>
-        <!--Card Field Section-->
-        <div id="cardScr" class="col-5 my-3 borderShow">
-          <div id="latestCard" class="justify-content-center">
-            <div id="currentCard">
-              <p>&#60;--- Current Card</p>
-            </div>
-            <div id="" class="newCardElement">
-              <img class="cardImage" src="svg/coin.svg" alt="coin">
-              <span class="cardValue">0</span>
-            </div>
-          </div>
-          <div id="cardHistory" class>
-          
-          </div>
-        </div>
-        <!--End Card Field Section-->
-        <div class="col-1"></div>
-      </div>
-    </div>
-  </div>
+<body class="vh">
 
-<!--Append console messages here.-->
-  <div id="message_log" class="container-fluid fixed-bottom">
-  </div>
-  
+  <div id="welcome_screen">
+    <div id="introduction">
+      
+    </div>
+    <div id="player_queue">
 
-<!--Here thar be templates-->
-  <div id="templateStorage">
-    <!--ID should be changed to reflect whatever is needed, empty for a placeholder-->
-    <div id="" class="cardElement coinCard">
-      <img class="cardImage" src="svg/coin.svg" alt="coin">
-      <span class="cardValue">10</span>
-    </div>
-    <div id="" class="cardElement obstacleCard piranha">
-      <img class="cardImage" src="svg/piranha.svg" alt="coin">
-      <span class="cardValue">Piranha</span>
-    </div>
-    <div id="" class="cardElement obstacleCard rocks">
-      <img class="cardImage" src="svg/fallingrocks.svg" alt="coin">
-      <span class="cardValue">Rocks</span>
-    </div>
-    <div id="" class="cardElement obstacleCard water_bee">
-      <img class="cardImage" src="img/bee.png" alt="coin">
-      <span class="cardValue">Water Bee</span>
-    </div>
-    <div id="" class="cardElement obstacleCard barnacle">
-      <img class="cardImage" src="img/barnacle.png" alt="coin">
-      <span class="cardValue">Barnacle</span>
-    </div>
-    <div id="" class="cardElement obstacleCard sawblade">
-      <img class="cardImage" src="img/spinner.png" alt="coin">
-      <span class="cardValue">Sawblade</span>
-    </div>
-    <div id="namePlayerObject" class="avatarElement col">
-      <img class="avatar" src="svg/aquaticdiver.svg">
-      <span class="name">Test</span>
     </div>
   </div>
 
   <!-- Include the AirConsole API -->
-  <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
+  <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.3.0.js"></script>
 
   <!-- Include custom JS files -->
-  <script
-			  src="https://code.jquery.com/jquery-3.2.1.min.js"
-			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-			  crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/sugar.js"></script>
   <script type="text/javascript" src="js/shared.js"></script>
   <script type="text/javascript" src="js/screen.js"></script>
 
