@@ -25,12 +25,23 @@ var init = function() {
     }
   };
 
-  // Send data to the screen, when clicking on the button
+  // // Send data to the screen, when clicking on the button
+  // var submit_button_ele = document.getElementById('submit_info');
+  // submit_button_ele.addEventListener('click', function() {
+  //   air_console.message(AirConsole.SCREEN, {
+  //     action: AC.Action.SayHello, // see js/shared.js file
+  //     message: 'Oh hello screen!'
+  //   });
+  // });
+
+  var name_input_ele = document.getElementById('player_name')
+
   var submit_button_ele = document.getElementById('submit_info');
   submit_button_ele.addEventListener('click', function() {
     air_console.message(AirConsole.SCREEN, {
-      action: AC.Action.SayHello, // see js/shared.js file
-      message: 'Oh hello screen!'
+      action: AC.Action.EnterAsPlayer, // see js/shared.js file
+      playerName: name_input_ele.value,
+      message: "Enter request sent from" + this.device_id
     });
   });
 

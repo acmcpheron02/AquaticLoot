@@ -4,17 +4,17 @@
 var air_console = null;
 
 var init = function() {
+  var message_log_ele = document.getElementById('screen_log');
 
-  var message_log_ele = document.getElementById('message_log');
-  var cube_ele = document.getElementById('cube');
+  // var cube_ele = document.getElementById('cube');
 
-  var moveCube = function() {
-    var min = 100;
-    var max = window.innerWidth - 100;
-    var rand_pos = Math.floor(Math.random() * (max - min + 1)) + min;
-    cube_ele.style.left = rand_pos + "px";
-    return rand_pos;
-  };
+  // var moveCube = function() {
+  //   var min = 100;
+  //   var max = window.innerWidth - 100;
+  //   var rand_pos = Math.floor(Math.random() * (max - min + 1)) + min;
+  //   cube_ele.style.left = rand_pos + "px";
+  //   return rand_pos;
+  // };
 
   // Init AirConsole instance
   air_console = new AirConsole();
@@ -36,10 +36,10 @@ var init = function() {
   // Receive a message from a device
   air_console.onMessage = function(device_id, data) {
     // Receive "greet" message
-    if (data.action === AC.Action.SayHello) { // see js/shared.js
-      appendTextToElement(message_log_ele, "Hello from device " + device_id);
+    if (data.action === AC.Action.EnterAsPlayer) { // see js/shared.js
+      appendTextToElement(message_log_ele, data.playerName + " has joined the game");
       // Lets send something back
-      this.message(device_id, { message: "Oh hello back! Your Screen" });
+      this.message(device_id, { message: "Ahoy thar, " + data.playerName });
     }
 
   };

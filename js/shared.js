@@ -9,7 +9,7 @@
 var AC =  {};
 
 AC.Action = {
-  SayHello: "greet"
+  EnterAsPlayer: ""
 };
 
 
