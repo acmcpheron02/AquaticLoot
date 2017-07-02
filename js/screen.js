@@ -42,13 +42,6 @@ var init = function() {
       this.message(device_id, { message: "Oh hello back! Your Screen" });
     }
 
-    // Receive "move cube" action
-    if (data.action === AC.Action.MoveCube) {
-      var px = moveCube();
-      var msg = "Device " + device_id + " moves the cube to: " + px + "px";
-      appendTextToElement(message_log_ele, msg);
-    }
-
   };
 };
 

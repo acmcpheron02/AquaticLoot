@@ -26,19 +26,11 @@ var init = function() {
   };
 
   // Send data to the screen, when clicking on the button
-  var hello_button = document.getElementById('hello_button');
-  hello_button.addEventListener('click', function() {
+  var submit_button_ele = document.getElementById('submit_info');
+  submit_button_ele.addEventListener('click', function() {
     air_console.message(AirConsole.SCREEN, {
       action: AC.Action.SayHello, // see js/shared.js file
-      message: 'Oh hellow screen!'
-    });
-  });
-
-  // Send action to screen to move the cube
-  var move_cube_button = document.getElementById('move_cube');
-  move_cube_button.addEventListener('click', function() {
-    air_console.message(AirConsole.SCREEN, {
-      action: AC.Action.MoveCube
+      message: 'Oh hello screen!'
     });
   });
 
